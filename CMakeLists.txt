@@ -11,11 +11,20 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/include/SDL EXCLUDE_FROM_ALL)
 
+file(GLOB_RECURSE SOURCE_FILES "${CMAKE_CURRENT_SOURCE_DIR}/src/lib/**/*.cpp")
+
+add_library(LibsModule ${SOURCE_FILES})
+target_link_libraries(LibsModule PRIVATE SDL2::SDL2)
+
+link_directories(${PROJECT_NAME} ${CMAKE_CURRENT_SOURCE_DIR}/src/lib)
+
 add_executable(${PROJECT_NAME} main.cpp)
 
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_20)
 
-target_link_libraries(${PROJECT_NAME} PRIVATE SDL2::SDL2)
+target_link_libraries(${PROJECT_NAME} PUBLIC SDL2::SDL2)
+target_link_libraries(${PROJECT_NAME} PUBLIC LibsModule)
+
 target_include_directories(
   ${PROJECT_NAME}
   PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/include>)
