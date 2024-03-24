@@ -1,4 +1,3 @@
-#include "SDL_render.h"
 #include <SDL2/SDL.h>
 
 const auto WINDOW_FLAGS = SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE;

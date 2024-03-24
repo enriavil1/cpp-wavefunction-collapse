@@ -1,8 +1,6 @@
 #include <iostream>
 
 #include "../../include/Window/window.hpp"
-#include "SDL_render.h"
-#include "SDL_surface.h"
 
 bool Window::initialize() {
   if (SDL_Init(SDL_INIT_VIDEO)) {
